@@ -64,8 +64,9 @@ function Chart(props){
                     datasets:[{
                         label:'Total Profit',
                         data:profits,
-                        fill:false,
-                        borderColor:'rgb(75, 192, 192)',
+                        backgroundColor:'rgb(255,255,255)',
+                        borderColor:'rgb(51,183,225)',
+                        fill:false,    
                         tension:0.1
                     }]
                 }} />

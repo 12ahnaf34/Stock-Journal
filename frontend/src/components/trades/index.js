@@ -8,9 +8,10 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 function Trades() {
     const [tradeList, setTradeList] = useState([])
-    const {user} = useAuth0()
+    const {isAuthenticated, user} = useAuth0()
 
-    useEffect(() => {
+   
+    useEffect(() => {  
         axios.get('http://localhost:8888/trades', {})
             .then(res => {
                 const userTrades = res.data.filter(item => {
@@ -20,7 +21,7 @@ function Trades() {
             })
             .catch(err => {
                 console.log(err)
-            })
+            })                     
     }, [])
 
     const deleteHandler = id => {
@@ -36,12 +37,12 @@ function Trades() {
             })
     }
 
-    return(
+    return(  
         <div>
             <TradeForm tradeList={tradeList} setTradeList={setTradeList} />
             <Chart tradeList={tradeList} />
             <TradeList tradeList={tradeList} deleteHandler={deleteHandler} />
-        </div>    
+        </div>              
     )
 }
 

@@ -14,16 +14,17 @@ function TradeList(props) {
     const badTrades = userTrades.filter(item => {
         return item.profitLoss<0
     })
+    const totalTrades = goodTrades.length +badTrades.length
     const amounts = userTrades.map(trade => trade.profitLoss)
-    const totalProfitLoss =  amounts.reduce((acc, item) => (acc +=item),0)
+    const totalProfitLoss = (amounts.reduce((acc, item) => (acc +=item),0))*5
     const successRate = (goodTrades.length/(goodTrades.length + badTrades.length))*100
    // console.log(userTrades)   
 
     return(
         isAuthenticated && (
             <div>
-                <p>Success Rate  {successRate.toFixed(2)}%</p>
-                <span>Total Profit(P) {totalProfitLoss}</span>
+                <p>Trades {totalTrades} -- Profit ${totalProfitLoss}</p>
+                <p>Success Rate {successRate.toFixed(2)}% </p>
                 <table>
                     <tbody>
                         <tr>

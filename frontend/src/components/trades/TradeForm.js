@@ -8,8 +8,8 @@ function TradeForm(props) {
 
     const [stock, setStock] = useState()
     const [method,setMethod] = useState()
-    const [quantity, setQuantity] = useState(1)
-    const [profitLoss, setProfitLoss] = useState(0)
+    const [quantity, setQuantity] = useState()
+    const [profitLoss, setProfitLoss] = useState()
     const {user, isAuthenticated} = useAuth0()
 
 
@@ -29,6 +29,9 @@ function TradeForm(props) {
     const handleSubmit = e => {
         
         e.preventDefault()
+        if(!isAuthenticated){
+            return alert('You must Login before adding a trade.')
+        }
         const newTrade = [{
             id:date,
             user:user.email,
@@ -40,16 +43,9 @@ function TradeForm(props) {
         if(isAuthenticated){
             axios.post('http://localhost:8888/trades', newTrade)
             .then(res => {
-                console.log(res)
-                
+                console.log(res)   
             })
-            .catch(err => {
-                console.log(err)
-            })
-            props.setTradeList([ ...newTrade, ...props.tradeList])         
-        }
-        else{
-            alert('You must log in first')
+            props.setTradeList([ ...newTrade, ...props.tradeList])
         }
     }
 
@@ -60,8 +56,8 @@ function TradeForm(props) {
 
             <input value={stock} placeholder='Stock'  onChange={handleStock} type='text' />
             <input value={method} placeholder='Method' onChange={handleMethod} type='text' />
-            <input value={quantity} onChange={handleQuantity} type='number' min='1' step='1' />
-            <input value={profitLoss} onChange={handleProfitLoss} type='number' step='0.25' />
+            <input value={quantity} placeholder='Share Quantity' onChange={handleQuantity} type='number' min='1' step='1' />
+            <input value={profitLoss} placeholder='Profit/Loss' onChange={handleProfitLoss} type='number' step='0.25' />
 
             <button type='submit'>+Trade</button>
         </form>  
