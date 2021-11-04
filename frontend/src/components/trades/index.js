@@ -10,7 +10,7 @@ function Trades() {
     const [tradeList, setTradeList] = useState([])
     const {isAuthenticated, user} = useAuth0()
 
-   
+   //test comment
     useEffect(() => {  
         axios.get('http://localhost:8888/trades', {})
             .then(res => {
