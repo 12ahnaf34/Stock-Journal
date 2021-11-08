@@ -20,6 +20,8 @@ List of backend files:
 ->backend>package-lock.json => Contains information on node modules
 ->backend>package.json => General info on the backend such as scripts and dependencies
 
+List of frontend files:
+
 ->frontend>src>components => Contains all the parts of the application such as the login button, chart, etc
 ->frontend>src>App.css => Contains all the design styles used in the web application
 ->frontend>src>App.js => Calls up components
