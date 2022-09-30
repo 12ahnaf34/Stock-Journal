@@ -12,7 +12,7 @@ function Trades(props) {
   useEffect(() => {
     if (userData.name !== "") {
       axios
-        .get("https://stock-journal-backend.herokuapp.com/", {})
+        .get("https://stock-journal-backend.herokuapp.com/trades", {})
         .then((res) => {
           const userTrades = res.data.filter((item) => {
             return item.user === userData.email;
