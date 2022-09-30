@@ -53,7 +53,7 @@ function TradeForm(props) {
       },
     ];
     if (props.userData.name !== "") {
-      axios.post("http://localhost:8888/trades", newTrade).then((res) => {
+      axios.post("https://stock-journal-backend.herokuapp.com/trades", newTrade).then((res) => {
         console.log(res);
       });
       props.setTradeList([...newTrade, ...props.tradeList]);

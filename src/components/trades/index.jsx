@@ -12,7 +12,7 @@ function Trades(props) {
   useEffect(() => {
     if (userData.name !== "") {
       axios
-        .get("http://localhost:8888/trades", {})
+        .get("https://stock-journal-backend.herokuapp.com/", {})
         .then((res) => {
           const userTrades = res.data.filter((item) => {
             return item.user === userData.email;
@@ -27,7 +27,7 @@ function Trades(props) {
 
   const deleteHandler = (id) => {
     axios
-      .delete(`http://localhost:8888/trades/${id}`)
+      .delete(`https://stock-journal-backend.herokuapp.com/trades/${id}`)
       .then((res) => {
         const newTrades = tradeList.filter((item) => {
           return item.id !== id;
